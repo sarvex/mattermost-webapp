@@ -450,7 +450,7 @@ export const TutorialSteps = {
 export const LAST_SKIPPED_PREFERENCE_NAME = 'last_skipped';
 
 // Each time we add/shuffle around tutorials, we need to update this number to match
-export const PRIOR_LAST_TUTORIAL = 2;
+export const PRIOR_LAST_TUTORIAL_STEP = 2;
 
 export const LAST_TUTORIAL_STEP = Object.values(TutorialSteps).reduce((acc, curr) => {
     if (curr === TutorialSteps.FINISHED) {
