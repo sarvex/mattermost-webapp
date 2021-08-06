@@ -447,6 +447,18 @@ export const TutorialSteps = {
     FINISHED: 999,
 };
 
+export const LAST_SKIPPED_PREFERENCE_NAME = 'last_skipped';
+
+// Each time we add/shuffle around tutorials, we need to update this number to match
+export const PRIOR_LAST_TUTORIAL = 2;
+
+export const LAST_TUTORIAL_STEP = Object.values(TutorialSteps).reduce((acc, curr) => {
+    if (curr === TutorialSteps.FINISHED) {
+        return curr
+    }
+    return acc > curr ? acc : curr
+}, 0);
+
 export const RecommendedNextSteps = {
     COMPLETE_PROFILE: 'complete_profile',
     TEAM_SETUP: 'team_setup',
