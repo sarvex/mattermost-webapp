@@ -5,6 +5,8 @@ import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
+import {TutorialSteps} from 'utils/constants';
+
 import IconButton from '@mattermost/compass-components/components/icon-button';
 import Icon, {TIconGlyph} from '@mattermost/compass-components/foundations/icon';
 import Heading from '@mattermost/compass-components/components/heading';
@@ -67,13 +69,13 @@ const MenuItem = styled(Link)`
         color: inherit;
     }
 
-    i {
-        color: var(--sidebar-bg);
-    }
-
     button {
         padding: 0 6px;
     }
+`;
+
+const StyledIcon = styled(Icon)`
+    color: var(--sidebar-bg);
 `;
 
 const MenuItemTextContainer = styled.div`
@@ -90,7 +92,7 @@ const SwitcherNavEntry = (props: SwitcherNavEntryProps) => {
             to={props.destination}
         >
 
-            <IconButton icon={props.icon}/>
+            <StyledIcon glyph={props.icon}/>
             <MenuItemTextContainer>
                 {props.text}
             </MenuItemTextContainer>
@@ -130,52 +132,54 @@ const ProductSwitcher = (): JSX.Element => {
     });
 
     return (
-        <MenuWrapper
-            open={switcherOpen}
-        >
-            <ProductSwitcherContainer>
-                <IconButton
-                    icon={'products'}
-                    onClick={handleClick}
-                    size={'sm'}
-                    compact={true}
-                    toggled={switcherOpen}
-                    inverted={true}
-                    aria-label='Select to open product switch menu.'
-                />
-                <ProductBranding>
-                    <Icon
-                        size={20}
-                        glyph={'product-channels'}
-                    />
-                    <Heading
-                        element='h1'
-                        size={200}
-                        margin='none'
-                    >
-                        {'Channels'}
-                    </Heading>
-                </ProductBranding>
-            </ProductSwitcherContainer>
-            <Menu
-                ariaLabel={'switcherOpen'}
+        <div ref={menuRef}>
+            <MenuWrapper
+                open={switcherOpen}
             >
-                <SwitcherMenuDescriptiveText>
-                    <FormattedMessage
-                        defaultMessage='Open...'
-                        id='global_header.open'
+                <ProductSwitcherContainer>
+                    <IconButton
+                        icon={'products'}
+                        onClick={handleClick}
+                        size={'sm'}
+                        compact={true}
+                        toggled={switcherOpen}
+                        inverted={true}
+                        aria-label='Select to open product switch menu.'
                     />
-                </SwitcherMenuDescriptiveText>
-                <SwitcherNavEntry
-                    destination={'/'}
-                    icon={'product-channels'}
-                    text={'Channels'}
-                    active={currentProductID === null}
-                />
-                {productItems}
-                <ProductSwitcherMenu id='ProductSwitcherMenu'/>
-            </Menu>
-        </MenuWrapper>
+                    <ProductBranding>
+                        <Icon
+                            size={20}
+                            glyph={'product-channels'}
+                        />
+                        <Heading
+                            element='h1'
+                            size={200}
+                            margin='none'
+                        >
+                            {'Channels'}
+                        </Heading>
+                    </ProductBranding>
+                </ProductSwitcherContainer>
+                <Menu
+                    ariaLabel={'switcherOpen'}
+                >
+                    <SwitcherMenuDescriptiveText>
+                        <FormattedMessage
+                            defaultMessage='Open...'
+                            id='global_header.open'
+                        />
+                    </SwitcherMenuDescriptiveText>
+                    <SwitcherNavEntry
+                        destination={'/'}
+                        icon={'product-channels'}
+                        text={'Channels'}
+                        active={currentProductID === null}
+                    />
+                    {productItems}
+                    <ProductSwitcherMenu id='ProductSwitcherMenu'/>
+                </Menu>
+            </MenuWrapper>
+        </div>
     );
 };
 
