@@ -107,6 +107,10 @@
     "flexsearch": {
       "versions": "",
       "reason": "MM-37116 - Breaking changes in API"
+    },
+    "rudder-sdk-js": {
+      "versions": "1.0.18",
+      "reason": "Type definitions are currently missing"
     }
   }
 }

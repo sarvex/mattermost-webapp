@@ -79,7 +79,7 @@
     "redux-persist": "4.10.2",
     "redux-thunk": "2.3.0",
     "regenerator-runtime": "0.13.9",
-    "rudder-sdk-js": "1.0.18",
+    "rudder-sdk-js": "1.0.16",
     "sass": "1.39.2",
     "semver": "7.3.5",
     "serialize-error": "8.0.1",
