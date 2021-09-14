@@ -52,7 +52,7 @@ type Props = {
     /**
      * Set to mark the post as flagged
      */
-    isFlagged?: boolean;
+    isFlagged: boolean;
 
     /**
      * Set to mark the post as open the extra info in the rhs

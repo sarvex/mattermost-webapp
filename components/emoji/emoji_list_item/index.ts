@@ -15,10 +15,14 @@ import {getDisplayNameByUser} from 'utils/utils';
 
 import {GlobalState} from '../../../types/store';
 
-import EmojiListItem, {Props} from './emoji_list_item';
+import EmojiListItem from './emoji_list_item';
 
-function mapStateToProps(state: GlobalState, ownProps: Props) {
-    const emoji = state.entities.emojis.customEmoji[ownProps.emojiId!];
+interface OwnProps {
+    emojiId: string;
+}
+
+function mapStateToProps(state: GlobalState, ownProps: OwnProps) {
+    const emoji = state.entities.emojis.customEmoji[ownProps.emojiId];
     const creator = getUser(state, emoji.creator_id);
 
     return {

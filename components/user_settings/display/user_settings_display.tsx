@@ -79,8 +79,8 @@ type Props = {
     activeSection?: string;
     closeModal?: () => void;
     collapseModal?: () => void;
-    setRequireConfirm?: () => void;
-    setEnforceFocus?: () => void;
+    setRequireConfirm: () => void;
+    setEnforceFocus: () => void;
     timezones: Timezone[];
     userTimezone: UserTimezone;
     allowCustomThemes: boolean;

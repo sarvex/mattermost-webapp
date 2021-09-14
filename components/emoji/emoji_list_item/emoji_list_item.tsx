@@ -11,9 +11,8 @@ import {ActionFunc} from 'mattermost-redux/types/actions';
 import DeleteEmoji from 'components/emoji/delete_emoji_modal';
 import AnyTeamPermissionGate from 'components/permissions_gates/any_team_permission_gate';
 
-export type Props = {
+interface Props {
     emoji: CustomEmoji;
-    emojiId?: string;
     currentUserId: string;
     creatorDisplayName: string;
     creatorUsername?: string;
