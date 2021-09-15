@@ -45,7 +45,7 @@ type BaseChildProps = {
     theme: Theme;
 }
 
-export default function Pluggable(props: Props): JSX.Element | undefined {
+export default function Pluggable(props: Props): JSX.Element | null {
     const {
         components,
         pluggableId,
@@ -56,7 +56,7 @@ export default function Pluggable(props: Props): JSX.Element | undefined {
     } = props;
 
     if (!pluggableName || !Object.hasOwnProperty.call(components, pluggableName)) {
-        return undefined;
+        return null;
     }
 
     // Override the default component with any registered plugin's component
@@ -66,7 +66,7 @@ export default function Pluggable(props: Props): JSX.Element | undefined {
     if (pluggableName === 'Product') {
         content = components.Product.map((pc) => {
             if (!subComponentName || !pc[subComponentName]) {
-                return undefined;
+                return null;
             }
 
             const Component = pc[subComponentName]! as React.ComponentType<BaseChildProps>;
@@ -89,7 +89,7 @@ export default function Pluggable(props: Props): JSX.Element | undefined {
 
         content = pluginComponents.map((p) => {
             if (!p.component) {
-                return undefined;
+                return null;
             }
 
             const Component = p.component as React.ComponentType<BaseChildProps>;
