@@ -134,7 +134,7 @@ export default class ChannelNavigator extends React.PureComponent<Props> {
         );
 
         let addChannelDropdown = null;
-        if (!this.props.addChannelButton || this.props.addChannelButton === AddChannelButtonTreatments.NONE) {
+        if (!this.props.addChannelButton || this.props.addChannelButton === AddChannelButtonTreatments.NONE || !this.props.globalHeaderEnabled) {
             addChannelDropdown = (
                 <AddChannelDropdown
                     showNewChannelModal={this.props.showNewChannelModal}
@@ -230,7 +230,7 @@ export default class ChannelNavigator extends React.PureComponent<Props> {
     // TODO: the render function in place can be replaced with this one, once we successfully release v6.0
     // render() {
     //     let addChannelDropdown = null;
-    //     if (!this.props.addChannelButton || this.props.addChannelButton === AddChannelButtonTreatments.NONE) (
+    //     if (!this.props.addChannelButton || this.props.addChannelButton === AddChannelButtonTreatments.NONE || !this.props.globalHeaderEnabled) (
     //         <AddChannelDropdown
     //             showNewChannelModal={this.props.showNewChannelModal}
     //             showMoreChannelsModal={this.props.showMoreChannelsModal}

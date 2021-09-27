@@ -30,6 +30,9 @@ function mockTreatment(treatment?: AddChannelButtonTreatments) {
     // treatment
     spy.mockReturnValueOnce(treatment);
 
+    // global header enabled
+    spy.mockReturnValueOnce(true);
+
     // channels by name
     spy.mockReturnValueOnce({});
 }

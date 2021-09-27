@@ -16,6 +16,8 @@ import {getCurrentUser} from 'mattermost-redux/selectors/entities/users';
 import {getInt, getAddChannelButtonTreatment} from 'mattermost-redux/selectors/entities/preferences';
 import {getChannelsNameMapInCurrentTeam} from 'mattermost-redux/selectors/entities/channels';
 
+import {getGlobalHeaderEnabled} from 'selectors/global_header';
+
 import {GlobalState} from 'types/store';
 import Constants, {Preferences, TutorialSteps} from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
@@ -116,7 +118,8 @@ const SidebarHeader: React.FC<Props> = (props: Props): JSX.Element => {
     const showMenuTip = tipStep === TutorialSteps.MENU_POPOVER && !isMobile;
     const showAddChannelTip = tipStep === TutorialSteps.ADD_CHANNEL_POPOVER && !isMobile;
     const addChannelButton = useSelector((state: GlobalState) => getAddChannelButtonTreatment(state));
-    const hasAddChannelTreatment = Boolean(addChannelButton) && addChannelButton !== AddChannelButtonTreatments.NONE;
+    const globalHeaderEnabled = useSelector((state: GlobalState) => getGlobalHeaderEnabled(state));
+    const hasAddChannelTreatment = Boolean(addChannelButton) && addChannelButton !== AddChannelButtonTreatments.NONE && globalHeaderEnabled;
     const channelsByName = useSelector((state: GlobalState) => getChannelsNameMapInCurrentTeam(state));
     const townSquareDisplayName = channelsByName[Constants.DEFAULT_CHANNEL]?.display_name || '';
     const offTopicDisplayName = channelsByName[Constants.OFFTOPIC_CHANNEL]?.display_name || '';
