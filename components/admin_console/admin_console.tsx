@@ -192,6 +192,17 @@ export default class AdminConsole extends React.PureComponent<Props, State> {
             </Switch>
         );
     }
+    
+    let discardChangesModal;
+    if (this.props.showNavigationPrompt) {
+        discardChangesModal = (
+            <DiscardChangesModal
+                show={this.props.showNavigationPrompt}
+                onConfirm={this.props.confirmNavigation}
+                onCancel={this.props.cancelNavigation}
+           />
+        );
+    }
 
     render() {
         return (
@@ -200,12 +211,7 @@ export default class AdminConsole extends React.PureComponent<Props, State> {
                 <div className='admin-console'>
                     {this.renderRoutes()}
                 </div>
-                <DiscardChangesModal
-                    show={this.props.showNavigationPrompt}
-                    onConfirm={this.props.confirmNavigation}
-                    onCancel={this.props.cancelNavigation}
-                />
-                <ModalController/>
+                {discardChangesModal}
             </div>
         );
     }
