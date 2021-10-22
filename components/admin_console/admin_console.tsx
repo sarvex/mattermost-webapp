@@ -193,76 +193,18 @@ export default class AdminConsole extends React.PureComponent<Props, State> {
         );
     }
 
-    public render(): JSX.Element | null {
-        const {
-            license,
-            config,
-            environmentConfig,
-            showNavigationPrompt,
-            roles,
-        } = this.props;
-        const {setNavigationBlocked, cancelNavigation, confirmNavigation, editRole, updateConfig} = this.props.actions;
-
-        if (!this.props.currentUserHasAnAdminRole) {
-            return (
-                <Redirect to={this.props.unauthorizedRoute}/>
-            );
-        }
-
-        if (!this.mainRolesLoaded(this.props.roles)) {
-            return null;
-        }
-
-        if (Object.keys(config).length === 0) {
-            return <div/>;
-        }
-
-        if (config && Object.keys(config).length === 0 && config.constructor === Object) {
-            return (
-                <div className='admin-console__wrapper'>
-                    <AnnouncementBar/>
-                    <div className='admin-console'/>
-                </div>
-            );
-        }
-
-        const discardChangesModal: JSX.Element = (
-            <DiscardChangesModal
-                show={showNavigationPrompt}
-                onConfirm={confirmNavigation}
-                onCancel={cancelNavigation}
-            />
-        );
-
-        const extraProps: ExtraProps = {
-            enterpriseReady: this.props.buildEnterpriseReady,
-            license,
-            config,
-            environmentConfig,
-            setNavigationBlocked,
-            roles,
-            editRole,
-            updateConfig,
-            cloud: this.props.cloud,
-            isCurrentUserSystemAdmin: this.props.isCurrentUserSystemAdmin,
-        };
+    render() {
         return (
-            <div
-                className='admin-console__wrapper'
-                id='adminConsoleWrapper'
-            >
-                <AnnouncementBar/>
-                <BackstageNavbar
-                    team={this.props.team}
-                />
-                <SystemNotice/>
+            <div className='admin-console__wrapper' >
                 <AdminSidebar onFilterChange={this.onFilterChange}/>
                 <div className='admin-console'>
-                    <Highlight filter={this.state.filter}>
-                        {this.renderRoutes(extraProps)}
-                    </Highlight>
+                    {this.renderRoutes()}
                 </div>
-                {discardChangesModal}
+                <DiscardChangesModal
+                    show={this.props.showNavigationPrompt}
+                    onConfirm={this.props.confirmNavigation}
+                    onCancel={this.props.cancelNavigation}
+                />
                 <ModalController/>
             </div>
         );
