@@ -41,7 +41,7 @@ describe('components/submenu_modal', () => {
                 ],
             },
         ],
-        onHide: jest.fn(),
+        onExited: jest.fn(),
     };
 
     test('should match snapshot', () => {
